@@ -1,2 +1,69 @@
 # k-quest
 Learn Korean
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>K-Quest</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+button {
+  background: #38bdf8;
+  border: none;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+<h1>🎮 K-Quest</h1>
+<p>Learn Korean in 30 Days</p>
+
+<div class="card">
+  <h2 id="ko">안녕하세요</h2>
+  <p id="en">Hello</p>
+  <button onclick="speak()">🔊 Hear it</button>
+  <button onclick="next()">Next</button>
+</div>
+
+<script>
+const lessons = [
+  { ko: "안녕하세요", en: "Hello" },
+  { ko: "감사합니다", en: "Thank you" },
+  { ko: "네", en: "Yes" },
+  { ko: "아니요", en: "No" }
+];
+
+let i = 0;
+
+function speak() {
+  const u = new SpeechSynthesisUtterance(lessons[i].ko);
+  u.lang = "ko-KR";
+  speechSynthesis.speak(u);
+}
+
+function next() {
+  i = (i + 1) % lessons.length;
+  document.getElementById("ko").innerText = lessons[i].ko;
+  document.getElementById("en").innerText = lessons[i].en;
+}
+</script>
+</body>
+</html>
